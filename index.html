@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make You Prettier - Your Personal Style Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">Make You Prettier</h1>
+                <p class="subtitle">Your personal style companion (by Ummatul Ayesha)</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2 class="hero-title">Discover Your Perfect Style</h2>
+                    <p class="hero-description">Upload your photo and get personalized beauty recommendations based on your unique features</p>
+                </div>
+            </section>
+
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <div class="upload-container">
+                    <div class="upload-box" id="uploadBox">
+                        <div class="upload-content">
+                            <div class="upload-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-15"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                            </div>
+                            <h3>Upload Your Photo</h3>
+                            <p>Choose a clear, front-facing photo</p>
+                            <button class="upload-btn" id="uploadBtn">Select Image</button>
+                        </div>
+                        <div class="image-preview" id="imagePreview" style="display: none;">
+                            <img id="previewImg" alt="Preview">
+                            <div class="image-actions">
+                                <button class="analyze-btn" id="analyzeBtn">Analyze Image</button>
+                                <button class="change-btn" id="changeBtn">Change Photo</button>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                </div>
+
+                <!-- Features List -->
+                <div class="features-list">
+                    <h3>What We Analyze</h3>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon">👤</div>
+                            <h4>Face Shape</h4>
+                            <p>Detect oval, round, square, heart, or diamond face shapes</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">👗</div>
+                            <h4>Body Shape</h4>
+                            <p>Identify pear, apple, hourglass, or rectangle body types</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">🎨</div>
+                            <h4>Skin Tone</h4>
+                            <p>Approximate your skin tone for perfect color matching</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">👚</div>
+                            <h4>Clothing Colors</h4>
+                            <p>Recommend colors that complement your skin tone</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">💇‍♀️</div>
+                            <h4>Haircut Suggestions</h4>
+                            <p>Find flattering hairstyles for your face shape</p>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✨</div>
+                            <h4>Styling Tips</h4>
+                            <p>Get personalized fashion advice for your body type</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading Section -->
+            <section class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loading-content">
+                    <div class="spinner"></div>
+                    <h3>Analyzing Your Features...</h3>
+                    <p>Please wait while we process your image</p>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2>Your Personalized Analysis</h2>
+                    <p>Here are your beauty recommendations based on your unique features</p>
+                </div>
+
+                <div class="results-grid">
+                    <!-- Face Shape Result -->
+                    <div class="result-card">
+                        <div class="result-header">
+                            <div class="result-icon" id="faceShapeIcon">👤</div>
+                            <h3>Face Shape</h3>
+                        </div>
+                        <div class="result-content">
+                            <h4 id="faceShapeResult">-</h4>
+                            <p id="faceShapeDescription">-</p>
+                        </div>
+                    </div>
+
+                    <!-- Body Shape Result -->
+                    <div class="result-card">
+                        <div class="result-header">
+                            <div class="result-icon" id="bodyShapeIcon">👗</div>
+                            <h3>Body Shape</h3>
+                        </div>
+                        <div class="result-content">
+                            <h4 id="bodyShapeResult">-</h4>
+                            <p id="bodyShapeDescription">-</p>
+                        </div>
+                    </div>
+
+                    <!-- Skin Tone Result -->
+                    <div class="result-card">
+                        <div class="result-header">
+                            <div class="result-icon">🎨</div>
+                            <h3>Skin Tone</h3>
+                        </div>
+                        <div class="result-content">
+                            <h4 id="skinToneResult">-</h4>
+                            <div class="skin-tone-swatch" id="skinToneSwatch"></div>
+                            <p id="skinToneDescription">-</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="recommendations">
+                    <div class="recommendation-card">
+                        <h3>💇‍♀️ Haircut Recommendations</h3>
+                        <div class="recommendation-content" id="haircutRecommendations">
+                            <p>Upload and analyze your photo to get personalized recommendations</p>
+                        </div>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3>👚 Perfect Colors for You</h3>
+                        <div class="recommendation-content" id="colorRecommendations">
+                            <p>Upload and analyze your photo to get personalized recommendations</p>
+                        </div>
+                    </div>
+
+                    <div class="recommendation-card">
+                        <h3>✨ Styling Tips</h3>
+                        <div class="recommendation-content" id="stylingRecommendations">
+                            <p>Upload and analyze your photo to get personalized recommendations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="save-btn" id="saveBtn">Save Results</button>
+                    <button class="new-analysis-btn" id="newAnalysisBtn">New Analysis</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <h2 class="brand-name">Make You Prettier</h2>
+                    <p class="tagline">Your personal style companion</p>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="footer-contact">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <a href="mailto:ayeshaummatul468@gmail.com">ayeshaummatul468@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        <span>+91-XXXXXXXXXX</span>
+                    </div>
+                </div>
+
+                <!-- Social Links Section -->
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link instagram" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link linkedin" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                                <rect x="2" y="9" width="4" height="12"/>
+                                <circle cx="4" cy="4" r="2"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link twitter" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright Section -->
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2025 Make You Prettier. All rights reserved. Designed by <span class="designer">Ummatul Ayesha</span>.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Hidden Canvas for Image Processing -->
+    <canvas id="analysisCanvas" style="display: none;"></canvas>
+
+    <script src="imageAnalysis.js"></script>
+    <script src="recommendations.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
