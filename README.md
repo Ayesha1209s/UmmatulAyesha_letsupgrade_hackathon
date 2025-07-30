@@ -1,4 +1,4 @@
-# Make You Preettier
+# Make You Prettier
 Make You Preettier is a personal style advisor website built using HTML, CSS, JavaScript, and Figma.
 It allows users to upload a photo and get quick, rule-based analysis of their face shape, body shape, and skin tone, along with personalized recommendations for clothing colors, haircuts, and styling tips.
 
